@@ -1,0 +1,15 @@
+<div id="showData">
+    <div id="scoreLevel">
+        <span class="bold">Score: <span>{{score}}</span></span>
+        <span class="bold">Level: <span>{{level}}</span></span>
+    </div>
+</div>
+
+<div id="ui" style='display: {{ display }}' (click)="startGame()">
+    <div id="container">
+        <h1><span>Score: </span> {{ score }}</h1>
+        <h2><span>Level: </span> {{ level }}</h2>
+        <button id="start">Start Game</button>
+    </div>
+</div>
+<canvas></canvas>

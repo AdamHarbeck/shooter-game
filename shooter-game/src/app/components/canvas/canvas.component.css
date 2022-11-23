@@ -1,0 +1,60 @@
+#scoreLevel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+span {
+    margin: 5px 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+#showData {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 98%
+}
+.bold {
+    font-weight: 500;
+    letter-spacing: 1px;
+    user-select: none;
+}
+#ui {
+    position: fixed;
+    background-color: white;
+    top: calc(100% /2 - 125px);
+    left: calc(100% /2 - 35%);
+    width: 70%;
+    height: 250px;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+#container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+button {
+    display: block;
+    width: 80%;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+h1, h2 {
+    margin: 0;
+}
+h1 > span, h2 > span {
+    color: #333;
+    font-size: 22px;
+}

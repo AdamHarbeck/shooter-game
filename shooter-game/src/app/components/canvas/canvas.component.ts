@@ -4,6 +4,7 @@ import { Player } from 'src/app/classes/player';
 import { Projectile } from 'src/app/classes/projectile';
 import { gsap } from 'gsap';
 import { Burst } from 'src/app/classes/burst';
+import { Howl } from 'howler';
 
 @Component({
   selector: 'app-canvas',
@@ -23,6 +24,8 @@ export class CanvasComponent implements OnInit {
   start!: HTMLElement;
   display = 'block';
   interval: any;
+  explosion: any = new Audio();
+  bg: any = new Audio()
 
   constructor() {
     addEventListener('click', (e) => {
@@ -38,6 +41,14 @@ export class CanvasComponent implements OnInit {
     this.canvas.height = innerHeight - 5;
     this.ctx = this.canvas.getContext('2d')!;
     this.player = new Player(innerWidth/2,innerHeight/2,20,'white');
+    this.explosion.src = "../../assets/explosion.wav";
+    this.explosion.volume = .5;
+    this.explosion.load();
+    let audio = new Howl({
+      src: ['../../assets/sg.mp3'],
+      loop: true,
+    })
+    audio.play();
   }
 
   init(){
@@ -50,6 +61,7 @@ export class CanvasComponent implements OnInit {
   }
 
   animate() {
+
     this.animationId = requestAnimationFrame(()=> this.animate());
     this.ctx.fillStyle = "rgba(0,0,0,0.1)"
     this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
@@ -98,7 +110,6 @@ export class CanvasComponent implements OnInit {
         if(dist - enemy.radius - projectile.radius < 1) {
           // Burst creations
           this.burstCreation(projectile, enemy);
-
           if(enemy.radius - 10 > 5) {
             this.score += 50; 
             gsap.to(enemy, {
@@ -108,6 +119,7 @@ export class CanvasComponent implements OnInit {
               this.projectiles.splice(pIndex, 1);
             },0);
           } else {
+            this.explosion.play();
             this.score += 125;
             setTimeout(()=> {
               this.enemyArr.splice(index, 1);
